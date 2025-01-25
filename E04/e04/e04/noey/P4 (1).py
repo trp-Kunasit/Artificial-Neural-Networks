@@ -9,7 +9,7 @@ def poly1_MSE(HQ, w):
 
     predict_H = poly1(Q, w)
 
-    result = np.mean((predict_H - H)**2)
+    result = np.mean((H-predict_H)**2)
 
     return result
 
@@ -35,7 +35,7 @@ def poly1_traingd(HQ, w0, lr, epochs):
     Q = HQ[:,1]
 
     for i in range(epochs):
-        w = w - lr * poly1_grad(HQ, w)
+        w = w - (lr * poly1_grad(HQ, w))
 
     with open('save_w.txt', 'w') as f:
         f.write(str(w[0,0]) + '\n')
@@ -49,7 +49,7 @@ def poly1_traingd(HQ, w0, lr, epochs):
     return w
     
 def approx_head(Q):
-    w = np.array([[5.5], [0.092]])
+    w = np.array([[5.51], [0.092]])
     # with open('save_w2.txt', 'r') as f:
     #     data = f.readlines()
     #     w0 = data[0].strip()
