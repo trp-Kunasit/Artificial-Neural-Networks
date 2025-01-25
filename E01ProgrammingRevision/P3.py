@@ -1,16 +1,12 @@
 """
 Teerapong Kunasit
 Problem: 3 EEG sequence
-
 """
-
-
 def main():
-    filename = input("Enter the filename: ")
-    series_input = input("Enter the series (e.g., 'Series: 0 FP2'): ")
+    filename =  input("File: ")
+    series_input = input("Series: ")
 
-    try:
-
+    try:    
         split_SI = series_input.split()
         if len(split_SI) != 2:
             raise ValueError(
@@ -32,13 +28,11 @@ def main():
 
                 trial, sensor, _, value = split_SI
                 if trial == trial_number and sensor == sensor_position:
-                    if len(result) < 4:
-                        result.append(float(value))
-                    else:
-                        break
+                     result.append(float(value))
+
 
             if result:
-                print(f"{result}")
+                print(result)
             else:
                 print("No data found matching the criteria.")
     except FileNotFoundError:

@@ -1,20 +1,35 @@
-#Teerapong Kunasit
+"""
+Teerapong Kunasit
+Problem 2: Online Averaging Calculator
+"""
 
 def main():
-    xbar = 0  
-    n = 0     
+    numbers = []
+    count = 1
     
-    while True:
-        x = float(input(f"x{n+1}: "))
-        if x < 0:  
-            if n > 0:  
-                xbar = (xbar * n + x) / (n + 1)  
-            break
-        n += 1  
-        xbar = (xbar * (n - 1) + x) / n
-        print(f"mean = {xbar:.4f}")
-        
-    print(f"mean = {xbar:.4f}")
-    
+    try:
+        while True:
+            print(f"x{count}: ", end='')
+            line = input().strip()
+            
+            if not line:  
+                continue
+                
+            number = float(line)
+            
+            numbers.append(number)
+            mean = sum(numbers) / len(numbers)
+            print(f"mean={mean:.4f}")
+            
+            if number < 0:
+                break
+                
+            count += 1
+            
+    except EOFError:
+        if numbers:  
+            mean = sum(numbers) / len(numbers)
+            print(f"mean={mean:.4f}")
+
 if __name__ == "__main__":
     main()
